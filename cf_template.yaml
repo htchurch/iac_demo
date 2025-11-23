@@ -1,16 +1,11 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: S3 bucket with drift detection support via CloudFormation
-
-Parameters:
-  BucketName:
-    Type: String
-    Description: Base name for the S3 bucket
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Template for S3 bucket with properties that can demonstrate drift'
 
 Resources:
-  S3Bucket:
-    Type: AWS::S3::Bucket
+  MyS3Bucket:
+    Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Sub "${BucketName}-drift-demo-bucket"
+      BucketName: !Sub '${AWS::StackName}-drift-demo-bucket'
       VersioningConfiguration:
         Status: Enabled
       PublicAccessBlockConfiguration:
@@ -25,14 +20,10 @@ Resources:
       Tags:
         - Key: Environment
           Value: Test
-        - Key: Project
+        - Key: Purpose
           Value: DriftDemo
 
 Outputs:
   BucketName:
-    Value: !Ref S3Bucket
     Description: Name of the created S3 bucket
-
-  BucketArn:
-    Value: !GetAtt S3Bucket.Arn
-    Description: ARN of the created S3 bucket
+    Value: !Ref MyS3Bucket
