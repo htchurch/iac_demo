@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Template for S3 bucket with properties that can demonstrate drift'
-
+ 
 Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
